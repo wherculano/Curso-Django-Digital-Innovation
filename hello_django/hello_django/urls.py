@@ -19,8 +19,9 @@ from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/',views.hello)
-    #path('hello/<string:nome>/<int:idade>',views.hello)
-    # onde nome é um parametro no formato string e idade no formato inteiro
-    # e ambos serão passados na url
+    path('hello/',views.hello),
+    path('soma/<int:n1>/<int:n2>',views.soma),
+    path('subtracao/<int:n1>/<int:n2>', views.subtracao),
+    path('multiplicacao/<int:n1>/<int:n2>', views.multiplicacao),
+    path('divisao/<int:n1>/<int:n2>', views.divisao),
 ]
