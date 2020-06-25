@@ -51,3 +51,28 @@ def hello(requests):
 - A função `hello` irá retornar a mensagem no navegador.
 
 #### FIM DA AULA 1 ####
+
+### Um pouco de Teoria
+1. **Django-admin:** é o utilitário de linha de comando do Django para tarefas administrativas;
+1. **Manage:** É um *wrapper* em volta do django-admin.    
+Ele delega tarefas para o django-admin.    
+É o responsável por colocar o pacote do projeto no *sys.path*.    
+Ele define a variável de ambiente DJANGO_SETTINGS_MODULE que então aponta para o arquivo settings.py.    
+Por isso, o manage.py é gerado automaticamente junto ao projeto, para facilitar o uso dos comandos do django-admin.py (comandos administrativos).
+1. **WSGI:** Web Server Gateway Interface (Interface de porta de entrada do servidor web).    
+É uma plataforma padrão para aplicações web em Python.    
+O Django com o comando `startproject` inicia uma configuração WSGI padrão para que se possa executar sua aplicação web.    
+Quando se inicia a aplicação Django com o comando `runserver` é iniciado um servidor de aplicação web leve. Esse servidor é especificado pela configuração WSGI_APPLICATION.    
+1. **Settings:** É o responsável pelas configurações do Django.    
+Nele eé possível configurar por exemplo apps, conexões com banco de dados, templates, time zone, cache, segurança, arquivos estáticos, etc.    
+1. **URLs:** É um *Schema* de URL.   
+É responsável por gerenciar as rotas das URLs, onde é possível configurar para onde cada rota será executada.    
+É uma forma limpa e elegante para gerenciar as URLs.
+1. **Views:** Responsável por processar e retornar uma resposta para o cliente que fez a requisição.
+1. **Models:** Define o modelo de dados interiramente em Python.    
+Faz a abstração dos objetos de banco para o Python, transformando todas as tabelas em classes e os acessos são feitos utilizando a linguagem Python, onde o Django realiza a transformação para SQL.
+1. **Admin:** Interface administrativa gerada automaticamente pelo Django.    
+Ele lê os metadados que estão nos models e fornce uma interface poderosa e pronta para a manipulação de dados.
+1. **Static:** Responsável por armazenar os arquivos estáticos (CSS, Javascript, imagens, etc).
+1. **Templates:** Responsável por armanezar os arquivos HTML.    
+O diretório templates é o diretório padrão para armazenarmos todo o conteúdo HTML da nossa aplicação.
