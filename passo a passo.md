@@ -76,3 +76,14 @@ Ele lê os metadados que estão nos models e fornce uma interface poderosa e pro
 1. **Static:** Responsável por armazenar os arquivos estáticos (CSS, Javascript, imagens, etc).
 1. **Templates:** Responsável por armanezar os arquivos HTML.    
 O diretório templates é o diretório padrão para armazenarmos todo o conteúdo HTML da nossa aplicação.
+
+### Aula 02 ###
+* Criando o projeto "agenda"    
+`django-admin startproject agenda`    
+`django-admin startapp core`    
+* Criando as tabelas do banco    
+`python manage.py migrate`    
+* Criando o usuário    
+`python manage.py createsuperuser --username nomeDoUsuario`    
+Após este comando será solicitado o e-mail e senha do usuario criado.    
+Criando um novo usuario com as opções *auth | user | can view user* e *can view group*, este usuário terá acesso a página, mas somente para visualização.
