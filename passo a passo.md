@@ -86,4 +86,18 @@ O diretório templates é o diretório padrão para armazenarmos todo o conteúd
 * Criando o usuário    
 `python manage.py createsuperuser --username nomeDoUsuario`    
 Após este comando será solicitado o e-mail e senha do usuario criado.    
-Criando um novo usuario com as opções *auth | user | can view user* e *can view group*, este usuário terá acesso a página, mas somente para visualização.
+Criando um novo usuario com as opções *auth | user | can view user* e *can view group*, este usuário terá acesso a página, mas somente para visualização.      
+
+### Miagração de Dados no Django.
+- Para migração de dados no Django, é necessário que tenha classes criadas.
+- Com as classes criadas, para migração é utilizado o comando *migrate*
+- Também pode-se utilizar o comando *migrations* para criação de um arquivo de migração, sem a necessidade de migras "às cegas".
+- Pode-se utilizar também o comando *sqlmigrate*, que ao invés de aplicar a migração, é gerado todo comando para que essa migração possa ser efetuada manualmente no banco de dados.    
+
+Após a criação dos modelos no arquivo *models.py*, rodar o comando `python manage.py makemigrations nomeDaApp`    
+O comando *migrate* não foi utilizado para não registrar de imediato no banco de dados e o nome da app foi adicionado para o comando "olhar" apenas para essa app.    
+Com o comando `python manage.py sqlmigrate` é mostrado os comandos SQL que irão gerar toda a criação da tabela.    
+Para aplicar as alterações/informações geradas no banco de dados, basta rodar o `python manage.py migrate nomeDaApp 0001`  (0001 é o arquivo gerado pelo *makemigrations*).    
+Após concluir, é necessário fazer o registro do banco no Django-admin (admin.py)    
+### FIM DA AULA 2 ###    
+
