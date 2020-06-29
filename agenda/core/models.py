@@ -17,3 +17,6 @@ class Evento(models.Model):
     
     def __str__(self):
         return self.titulo # no django-admin irá mostrar o titulo do envendo ao inves de Evento.object
+
+    def get_data_evento(self):
+        return self.data_evento.strftime('%d/%m/%y às %H:%M')

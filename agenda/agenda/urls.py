@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from core import views
+#from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('agenda/',views.lista_eventos),
+    path('', views.index), # redireciona o localhost "vazio" para a pagina, impedindo o erro
+    #path('', RedirectView.as_view('/agenda/')) # faz a mesma coisa que o path('',views.index)
 ]
