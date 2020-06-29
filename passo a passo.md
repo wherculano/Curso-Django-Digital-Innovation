@@ -101,3 +101,16 @@ Para aplicar as alterações/informações geradas no banco de dados, basta roda
 Após concluir, é necessário fazer o registro do banco no Django-admin (admin.py)    
 ### FIM DA AULA 2 ###    
 
+### AULA 3
+1. ### Templates  
+Django oferece no seu modelo de templates a capacidade de se utilizar expressões Python no HTML.    
+Com isso é possível mostrar informações e realizar comando como IF e FOR:    
+``` 
+<ul>
+    {% for evento in eventos %}
+        <li>{{evento.titulo}} - {{evento.get_data_evento}}</li>     
+    {% endfor %}
+</ul>
+```    
+Neste projeto foram criadas paginas HTML na pasta **templates**, onde a página principal "herda" as outras "camadas" HTML dos outros arquivos (footer e header). Pois assim ambos sempre permanecerão "intactos" em futuras alterações no arquivo principal.
+
