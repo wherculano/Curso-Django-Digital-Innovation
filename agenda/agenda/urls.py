@@ -23,4 +23,7 @@ urlpatterns = [
     path('agenda/',views.lista_eventos),
     path('', views.index), # redireciona o localhost "vazio" para a pagina, impedindo o erro
     #path('', RedirectView.as_view('/agenda/')) # faz a mesma coisa que o path('',views.index)
+    path('login/',views.login_user),
+    path('login/submit', views.submit_login),
+    path('logout/',views.logout_user),
 ]
