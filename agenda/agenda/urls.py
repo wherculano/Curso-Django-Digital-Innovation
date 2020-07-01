@@ -21,6 +21,8 @@ from core import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('agenda/',views.lista_eventos),
+    path('agenda/evento/', views.evento),
+    path('agenda/evento/submit', views.submit_evento),
     path('', views.index), # redireciona o localhost "vazio" para a pagina, impedindo o erro
     #path('', RedirectView.as_view('/agenda/')) # faz a mesma coisa que o path('',views.index)
     path('login/',views.login_user),
