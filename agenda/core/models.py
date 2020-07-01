@@ -9,7 +9,7 @@ class Evento(models.Model):
     data_criacao = models.DateTimeField(auto_now=True) # preenche o registro com a hora atual
     # pegar a tabela de usuarios do Django para usa-los como usuarios da agenda.
     usuario = models.ForeignKey(User, on_delete=models.CASCADE) # no on_delete, ao deletar o usuario, seus eventos tbm serão
-
+    local = models.TextField(blank=True, null=True)
 
     class Meta:
         '''Exigindo que minha tabela se chame "evento" na criação do BD'''
