@@ -44,7 +44,11 @@ def logout_user(request):
 
 @login_required(login_url='/login/')
 def evento(request):
-    return render(request, 'evento.html')
+    id_evento = request.GET.get('id')
+    dados = {}
+    if id_evento:
+        dados['evento'] = Evento.objects.get(id=id_evento)
+    return render(request, 'evento.html', dados)
 
 @login_required(login_url='/login/')
 def submit_evento(request):
@@ -54,10 +58,32 @@ def submit_evento(request):
         descricao = request.POST.get('descricao')
         usuario = request.user
         local = request.POST.get('local')
+        id_evento = request.POST.get('id_evento')
+        if id_evento:
+            evento = Evento.objects.get(id=id_evento)
+            if evento.user == usuario:
+                evento.titulo=titulo
+                evento.data_evento=data_evento,
+                evento.descricao=descricao,
+                evento.local=local
+                evento.save()
+             #Evento.objects.filter(id=id_evento).update(titulo=titulo,
+             #                       data_evento=data_evento,
+             #                       descricao=descricao,
+             #                       local=local) # esta comando faz a mesma coisa que o if acima, atualiza os campos
+        else:
         # salvando no banco
-        Evento.objects.create(titulo=titulo,
-                                data_evento=data_evento,
-                                descricao=descricao,
-                                usuario=usuario,
-                                local=local)
+            Evento.objects.create(titulo=titulo,
+                                    data_evento=data_evento,
+                                    descricao=descricao,
+                                    usuario=usuario,
+                                    local=local)
+    return redirect('/')
+
+@login_required(login_url='/login/')
+def delete_evento(request, id_evento):
+    usuario = request.user
+    evento = Evento.objects.get(id=id_evento)
+    if usuario == evento.usuario:
+        evento.delete() # excluindo o evento por id
     return redirect('/')
