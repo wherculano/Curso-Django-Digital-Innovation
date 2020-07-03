@@ -1,8 +1,11 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from core.models import Evento
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from datetime import datetime, timedelta
+from django.http.response import Http404, JsonResponse
 
 # Create your views here.
 def index(request):
@@ -29,7 +32,9 @@ def submit_login(request):
 @login_required(login_url='/login/') # exige uma sessão ativa    
 def lista_eventos(request):
     usuario = request.user
-    evento = Evento.objects.filter(usuario=usuario)
+    data_atual = datetime.now() - timedelta(hours=1) # considerando evento 1h atrasado
+    evento = Evento.objects.filter(usuario=usuario,
+                                    data_evento__gt=data_atual)
     #Evento.objects.filter(usuario=usuario) # retorna apenas do usuario em questão
     #Evento.objects.all() retorna todos os campos (perigoso se houver muitos dados)
     #Evento.objects.get(nome do campo) retorna apenas um campo em especifico
@@ -83,7 +88,19 @@ def submit_evento(request):
 @login_required(login_url='/login/')
 def delete_evento(request, id_evento):
     usuario = request.user
-    evento = Evento.objects.get(id=id_evento)
+    try:
+        evento = Evento.objects.get(id=id_evento)
+    except Exception:
+        raise Http404()
     if usuario == evento.usuario:
         evento.delete() # excluindo o evento por id
+    else:
+        raise Http404()
     return redirect('/')
+
+# @login_required(login_url='/login/') # comentar para criar api publica que não requer login
+def json_lista_evento(request, id_usuario):
+    usuario = User.objects.get(id=id_usuario) # liberando todos os usuarios por id em uma api publica
+    #usuario = request.user # inserir e remover a linha acima, será api privada
+    evento = Evento.objects.filter(usuario=usuario).values('id','titulo', 'local','descricao')
+    return JsonResponse(list(evento), safe=False) # safe é por passar uma lista e não um dicionário
